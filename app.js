@@ -11,6 +11,9 @@ app.use(bodyParser.json());
 
 const authenticate = require('./utils/authenticate');
 
+const keyGenerateRoutes = require('./routes/keyGenerate');
+
+app.use('/', keyGenerateRoutes)
 
 app.get('/', (req, res) => {
   res.json({'message': 'This is the leaderboard api. Go to /register to generate account'})

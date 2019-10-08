@@ -1,4 +1,3 @@
-// const jwt = require('jsonwebtoken');
 // const bodyParser = require('body-parser');
 
 //replace this with database users
