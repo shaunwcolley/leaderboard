@@ -2,6 +2,7 @@ const m = require('mongoose');
 
 const userSchema = new m.Schema({
   email: String,
+  pass: String,
   key: String,
 })
 

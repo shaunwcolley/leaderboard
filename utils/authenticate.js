@@ -2,29 +2,29 @@
 
 //replace this with database users
 
-const users = [
-  {
-    email: 'steve@steve.com',
-    key: 'abc123',
-    id: 0,
-  },
-  {
-    email: 'lisa@steve.com',
-    key: 'def456',
-    id: 2,
-  },
-  {
-    email: 'bill@steve.com',
-    key: 'ghi789',
-    id: 3,
-  },
-]
+// const users = [
+//   {
+//     email: 'steve@steve.com',
+//     key: 'abc123',
+//     id: 0,
+//   },
+//   {
+//     email: 'lisa@steve.com',
+//     key: 'def456',
+//     id: 2,
+//   },
+//   {
+//     email: 'bill@steve.com',
+//     key: 'ghi789',
+//     id: 3,
+//   },
+// ]
 
-let keys = []
-
-for (user of users) {
-  keys.push(user.key)
-}
+// let keys = []
+//
+// for (user of users) {
+//   keys.push(user.key)
+// }
 
 // replace the above with database interaction
 
