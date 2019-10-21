@@ -49,7 +49,7 @@ router.post('/get-key', (req,res) => {
 
       user.save(error => {
         if(!error) {
-          res.json({success: true, message: 'Welcome to Leaderboard', apiKey })
+          res.render('key', {apiKey})
         } else {
           res.json({ success: false, message: 'Unable to create user', error })
         }
