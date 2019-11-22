@@ -1,11 +1,11 @@
 const m = require('mongoose');
 
 const scoreSchema = new m.Schema({
-  value: Integer,
+  value: Number,
   intials: String,
-  userId: Integer,
+  userId: Number,
 })
 
 const Score = m.model('Score', scoreSchema)
 
-module.exports = Score;
+module.exports = scoreSchema;
