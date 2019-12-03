@@ -19,7 +19,7 @@ m.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (er
 })
 
 
-router.post('/get-key', (req,res) => {
+router.post('/', (req,res) => {
   const email = req.body.email;
   const pass = req.body.pass;
 

@@ -23,8 +23,10 @@ app.use(express.static('public'))
 const authenticate = require('./utils/authenticate');
 
 const keyGenerateRoutes = require('./routes/keyGenerate');
+const scoreRoutes = require('./routes/scoreRoutes');
 
-app.use('/', keyGenerateRoutes);
+app.use('/get-key', keyGenerateRoutes);
+app.use('/:key/scores', scoreRoutes);
 
 app.get('/', (req, res) => {
   res.render('home')
@@ -34,10 +36,12 @@ app.get('/register', (req, res) => {
   res.render('register')
 })
 
-app.get('/api/:key/scores', authenticate, (req,res) => {
-  res.send('howdy')
-})
+// app.get('/api/:key/scores', authenticate, (req,res) => {
+//   res.send('howdy')
+// })
+// test key:
+// 7TS176K-D5NMXJ3-PZCNC70-736WRW4
 
 app.listen(PORT, function() {
-  console.log('Scores are being served...');
+  console.log(`Scores are being served... on port ${PORT}`);
 })
