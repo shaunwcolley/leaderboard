@@ -1,22 +1,15 @@
 const express = require('express');
 const uuidAPIKey = require('uuid-apikey');
 const bcrypt = require('bcrypt');
-const m = require('mongoose');
 
-const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
-const DATABASE_URL = process.env.DATABASE_URL
+
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
 
 const User = require('../schemas/user');
 
 const router = express.Router();
 
-m.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
-  if(!error) {
-    console.log('Connected to MongoDB.')
-  } else {
-    console.log(error)
-  }
-})
+
 
 
 router.post('/', (req,res) => {
@@ -43,6 +36,7 @@ router.post('/', (req,res) => {
         email,
         pass,
         key,
+        scores: [],
       })
 
       // add encrypted user and key to database

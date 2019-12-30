@@ -1,37 +1,15 @@
-// const bodyParser = require('body-parser');
+const User = require('../schemas/user');
+const query = User.find();
 
-//replace this with database users
+const keyCheck = require('./keyCheck');
 
-// const users = [
-//   {
-//     email: 'steve@steve.com',
-//     key: 'abc123',
-//     id: 0,
-//   },
-//   {
-//     email: 'lisa@steve.com',
-//     key: 'def456',
-//     id: 2,
-//   },
-//   {
-//     email: 'bill@steve.com',
-//     key: 'ghi789',
-//     id: 3,
-//   },
-// ]
-
-// let keys = []
-//
-// for (user of users) {
-//   keys.push(user.key)
-// }
-
-// replace the above with database interaction
-
-function authenticate(req, res, next) {
+const authenticate = async (req, res, next) => {
   if(req.params.key) {
-    const key = req.params.key
-    if(keys.includes(key)) {
+    const key = req.params.key;
+    let users = await query.exec()
+    const user = await keyCheck(key, users);
+    if(user) {
+      res.locals.user = user
       next();
     } else {
       res.status(401).json({message: 'Invalid API key, please double check or ask for a new key'})

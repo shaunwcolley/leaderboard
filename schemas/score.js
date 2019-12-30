@@ -2,8 +2,7 @@ const m = require('mongoose');
 
 const scoreSchema = new m.Schema({
   value: Number,
-  intials: String,
-  userId: Number,
+  initials: String,
 })
 
 const Score = m.model('Score', scoreSchema)

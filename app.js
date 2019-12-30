@@ -3,13 +3,24 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mustacheExpress = require('mustache-express');
 const path = require('path');
+const m = require('mongoose');
 
 require('dotenv').config();
 
 const app = express();
 const VIEWS_PATH = path.join(__dirname, '/views');
 
+const DATABASE_URL = process.env.DATABASE_URL;
+
 const PORT = process.env.PORT || 8080;
+
+m.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (error) => {
+  if(!error) {
+    console.log('Connected to MongoDB.')
+  } else {
+    console.log(error)
+  }
+})
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -26,7 +37,7 @@ const keyGenerateRoutes = require('./routes/keyGenerate');
 const scoreRoutes = require('./routes/scoreRoutes');
 
 app.use('/get-key', keyGenerateRoutes);
-app.use('/:key/scores', scoreRoutes);
+app.use('/:key/scores', authenticate, scoreRoutes);
 
 app.get('/', (req, res) => {
   res.render('home')
