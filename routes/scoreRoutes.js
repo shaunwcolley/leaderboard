@@ -20,16 +20,44 @@ router.post('/', (req,res) => {
     initials,
   }
 
-  scores.push(score);
+  let update = false;
 
-  User.findOneAndUpdate({_id: userId}, {scores}, (error) => {
-      if(!error) {
-        res.json({ success: true, value, initials})
-      } else {
-        console.log(error)
-        res.json({ success: false, message: 'Unable to save scores', error })
+  if (scores.length < 10) {
+    update = true;
+    scores.push(score);
+  } else {
+    for (let i = 0; i < scores.length; i++) {
+      if (value > scores[i].value) {
+        update = true;
+        break;
       }
-  })
+    }
+    if (update) {
+      // push in new score since update === true
+      scores.push(score);
+
+      //sort scores
+      scores.sort((a, b) => (a.value < b.value) ? 1 : -1)
+
+      //remove lowest score
+      scores.pop()
+
+    }
+  }
+
+  if (update) {
+    User.findOneAndUpdate({_id: userId}, {scores}, (error) => {
+        if(!error) {
+          res.json({ success: true, value, initials})
+        } else {
+          console.log(`error in updating scores in db: ${error}`)
+          res.json({ success: false, message: 'Unable to save scores', error })
+        }
+    })
+  } else {
+    res.json({ message: 'not in top 10 scores...'})
+  }
+
 })
 
 module.exports = router;
