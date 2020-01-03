@@ -4,8 +4,6 @@ const User = require('../schemas/user');
 
 
 router.get('/', (req,res) => {
-  console.log('in the scores route')
-  console.log(res.locals.user)
   res.json(res.locals.user.scores)
 })
 
@@ -25,6 +23,10 @@ router.post('/', (req,res) => {
   if (scores.length < 10) {
     update = true;
     scores.push(score);
+
+    // ensure that scores are sorted descending;
+    scores.sort((a, b) => (a.value < b.value) ? 1 : -1);
+
   } else {
     for (let i = 0; i < scores.length; i++) {
       if (value > scores[i].value) {
@@ -55,7 +57,7 @@ router.post('/', (req,res) => {
         }
     })
   } else {
-    res.json({ message: 'not in top 10 scores...'})
+    res.json({ success: false, message: 'not in top 10 scores...'})
   }
 
 })

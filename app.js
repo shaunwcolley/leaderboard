@@ -16,14 +16,15 @@ const PORT = process.env.PORT || 8080;
 
 m.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (error) => {
   if(!error) {
-    console.log('Connected to MongoDB.')
+    console.log('Connected to MongoDB.');
   } else {
-    console.log(error)
+    console.log('Unable to connect to MongoDB; error:');
+    console.log(error);
   }
 })
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.engine('mustache', mustacheExpress(VIEWS_PATH + '/partials'));
@@ -39,12 +40,18 @@ const scoreRoutes = require('./routes/scoreRoutes');
 app.use('/get-key', keyGenerateRoutes);
 app.use('/:key/scores', authenticate, scoreRoutes);
 
+//basic routes for views
+
 app.get('/', (req, res) => {
-  res.render('home')
+  res.render('home');
+})
+
+app.get('/docs', (req,res) => {
+  res.render('docs');
 })
 
 app.get('/register', (req, res) => {
-  res.render('register')
+  res.render('register');
 })
 
 // app.get('/api/:key/scores', authenticate, (req,res) => {
