@@ -36,9 +36,11 @@ const authenticate = require('./utils/authenticate');
 
 const keyGenerateRoutes = require('./routes/keyGenerate');
 const scoreRoutes = require('./routes/scoreRoutes');
+const purgeRoutes = require('./routes/purgeRoutes')
 
 app.use('/get-key', keyGenerateRoutes);
 app.use('/:key/scores', authenticate, scoreRoutes);
+app.use('/:key/purge', authenticate, purgeRoutes);
 
 //basic routes for views
 

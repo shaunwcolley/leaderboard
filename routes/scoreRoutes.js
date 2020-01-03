@@ -8,9 +8,9 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req,res) => {
-  value = req.body.value;
-  initials = req.body.initials;
-  userId = res.locals.user.id
+  const value = req.body.value;
+  const initials = req.body.initials;
+  const userId = res.locals.user.id
   const scores = res.locals.user.scores
 
   const score = {
