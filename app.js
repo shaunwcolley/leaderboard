@@ -40,7 +40,7 @@ const purgeRoutes = require('./routes/purgeRoutes')
 
 app.use('/get-key', keyGenerateRoutes);
 app.use('/:key/scores', authenticate, scoreRoutes);
-app.use('/:key/purge', authenticate, purgeRoutes);
+app.use('/:key/scores', authenticate, purgeRoutes);
 
 //basic routes for views
 

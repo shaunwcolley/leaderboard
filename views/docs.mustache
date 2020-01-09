@@ -25,5 +25,63 @@
         To use this api follow the following ...
       </h3>
     </div>
+    <div>
+      <h4>
+        Leaderboard API
+      </h4>
+      <p>
+        <b>Leaderboard API</b> is an easy way to have a top 10 leaderboard for an arcade style game. The ideal user of this API is a person learning front-end development and building out a game to practice development.
+      </p>
+      <p>
+        Learn how to connect to a backend REST API <a href="https://stackoverflow.com/questions/36975619/how-to-call-a-rest-web-service-api-from-javascript">here</a>. Beyond the basic get request and using the built in JavaScript fetch function, you can use the <a href="https://www.npmjs.com/package/axios">axios<a/> dependency. Axios will better allow you to go beyond a mere get request, you will also be able to use the other methods required to use this API.
+      </p>
+      <p>
+        There is only one (1) basic route that a frontend client needs to use. The front end can get a list of scores, add a score in JSON format, and cleanse the list of scores stored using different REST HTTP methods: GET, PUT, and DELETE.
+      </p>
+      <p>
+        <a href="https://www.getpostman.com">Postman</a> is a great resource to check these routes to make sure the routes are working, with your API key and with the JSON in the correct formats.
+      </p>
+      <p>
+        Each user can have at most 10 high scores. The API checks if a score is in the top 10, removes lowest and inserts new score and initials into the list. Lastly, the scores are sorted from highest score to lowest score.
+      </p>
+    </div>
+    <div>
+      <h4>
+        The Route
+      </h4>
+      <ul>
+        <li>
+          <h5>
+          route.&ltapikey&gt/scores
+          </h5>
+          <p>
+            An example url request will be: leaderboardapi.com/1111-2222-1111-2222/scores
+          </p>
+          <div>
+            <h5>
+              the Methods
+            </h5>
+            <ul>
+              <li>
+                <span>POST method: adds a score to db.</span>
+                <span>Send data in a JSON format, as:</span>
+                <span>{"value": INTEGER, "initials": STRING}</span>
+                <span>e.g., {"value": 100, "initials": "FUN"}</span>
+                <span>
+                  If the string sent in for the initials is longer than 3 characters the API automatically cuts off after 3 and converts the string to upper case.
+                </span>
+              </li>
+              <li>
+                GET method: retrieves scores in descending order.
+              </li>
+              <li>
+                  POST method: This method will delete the high scores that are currently stored under your user account.
+              </li>
+            </ul>
+          </div>
+        </li>
+
+      </ul>
+    </div>
   </body>
 </html>

@@ -10,8 +10,6 @@ const User = require('../schemas/user');
 const router = express.Router();
 
 
-
-
 router.post('/', (req,res) => {
   const email = req.body.email;
   const pass = req.body.pass;
@@ -30,7 +28,7 @@ router.post('/', (req,res) => {
 
       const uuidAPIKeyToken = uuidAPIKey.create();
       const { apiKey } = uuidAPIKeyToken;
-      const key = bcrypt.hashSync(apiKey, SALT_ROUNDS)
+      const key = bcrypt.hashSync(apiKey, SALT_ROUNDS);
 
       let user = new User({
         email,
@@ -43,9 +41,9 @@ router.post('/', (req,res) => {
 
       user.save(error => {
         if(!error) {
-          res.render('key', {apiKey})
+          res.render('key', {apiKey});
         } else {
-          res.json({ success: false, message: 'Unable to create user', error })
+          res.json({ success: false, message: 'Unable to create user', error });
         }
       })
     }

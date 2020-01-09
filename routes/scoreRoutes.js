@@ -7,11 +7,20 @@ router.get('/', (req,res) => {
   res.json(res.locals.user.scores)
 })
 
-router.post('/', (req,res) => {
-  const value = req.body.value;
-  const initials = req.body.initials;
+router.put('/', (req,res) => {
+  const value = parseInt(req.body.value);
+  const stringReq = req.body.initials.toString();
   const userId = res.locals.user.id
   const scores = res.locals.user.scores
+  let initials = "";
+
+  if (stringReq.length < 3) {
+    initials = stringReq.toUpperCase();
+  } else {
+    for(let i = 0; i < 3; i++) {
+      initials += stringReq[i].toUpperCase();
+    }
+  }
 
   const score = {
     value,
